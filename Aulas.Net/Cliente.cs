@@ -4,15 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aulas_Net
+namespace Heranca
 {
-    public class Cliente
+    class Cliente
     {
-        public int Codigo { get; set; }
         public string Nome { get; set; }
-
-        public Cliente()
-        {
-        }
     }
 }

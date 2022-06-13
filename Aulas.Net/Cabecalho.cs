@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Heranca
 {
-    class Produto
+    class Cabecalho
     {
-        public string Nome { get; set; }
-        public decimal Preco { get; set; }
-        public int Quantidade { get; set; }
-
+        public Guid NumeroNota { get; set; }
+        public Cliente Cliente { get; set; }
     }
 }
