@@ -1,41 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Globalization;
 
-namespace Heranca
+namespace Calculadora
 {
     class Program
     {
         static void Main(string[] args)
         {
-            NotaFiscal notaFiscal = new NotaFiscal();
-
-            PessoaFisica pessoaFisica = new PessoaFisica();
-            pessoaFisica.Nome = "André Camillo";
-            pessoaFisica.CPF = "11122233344";
-
-            Cabecalho cabecalho = new Cabecalho();
-            cabecalho.Cliente = pessoaFisica;
-
-            List<Produto> lista = new List<Produto>();
-
-            Produto primeiroProduto = new Produto();
-            primeiroProduto.Nome = "Notebook Thinkpad";
-            primeiroProduto.Quantidade = 1;
-            primeiroProduto.Preco = 10000;
-
-            Produto segundoProduto = new Produto();
-            segundoProduto.Nome = "Mouse Logitech";
-            segundoProduto.Quantidade = 3;
-            segundoProduto.Preco = 120;
-
-            lista.Add((primeiroProduto));
-            lista.Add(segundoProduto);
-
-            foreach (var produtos in lista)
+            try
             {
-                Console.WriteLine(produtos);
+                FazerCalculo calculo = new FazerCalculo();
+
+                Console.WriteLine("--------------CALCULADORA--------------");
+                Console.Write("Digite o primeiro valor: ");
+                calculo.PrimeiroValor = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+                Console.Write("Digite o segundo valor: ");
+                calculo.SegundoValor = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+                Console.WriteLine("--------------OPERAÇÕES--------------");
+                Console.WriteLine("1 - Adição");
+                Console.WriteLine("2 - Subtração");
+                Console.WriteLine("3 - Multiplicação");
+                Console.WriteLine("4 - Divisão"); 
+                Console.Write("Digite o código da operação desejada: ");
+                int operacaoMatematica = int.Parse(Console.ReadLine());
+
+                switch (operacaoMatematica)
+                {
+                    case 1:
+                        calculo.Somar();
+                        Console.WriteLine("Resultado: " + calculo.Adicao);
+                        break;
+                    case 2:
+                        calculo.Subtrair();
+                        Console.WriteLine("Resultado: " + calculo.Subtracao);
+                        break;
+                    case 3:
+                        calculo.Multiplicar();
+                        Console.WriteLine("Resultado: " + calculo.Multiplicacao);
+                        break;
+                    case 4:
+                        calculo.Dividir();
+                        Console.WriteLine("Resultado: " + calculo.Divisao);
+                        break;
+                }
             }
-            notaFiscal.Imprimir(pessoaFisica.Nome, pessoaFisica.CPF);
+            catch (FormatException ex)
+            {
+                Console.WriteLine("Formato de entrada inválido", ex.Message);
+            }
         }
     }
 }
